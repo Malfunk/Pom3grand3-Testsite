@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html>
+<p><link rel="stylesheet" type="text/css" href="RealestDealestrevialist.css"></p>
+ <body>
+    <div class="divimage"><button id="arr-col1"><div id="column1"><</div></button>
+    <div class="column2" id="image-list"></div>
+    <button id="arr-col2"><div id="column3">></div></button></div>    
+    <div class="toolbar">
+        <button id="img-button">upload an image</button>
+        <input
+        type="file"
+        id="picture-input"
+        name="picture-input"
+        style="display: none;"
+        accept="image/png, image/jpeg"
+        />
+    </div>
+    <div ></div>
+    <div id="divbgborder"><div id="divbg"><!----<p><p><button id="v"> v </button>-->
+    <div class="toolbar">
+      <button id="AddCtg"> + Add Category</button></p>
+      <p><input type="text" id="title" placeholder="Enter a title for the category..."></input>
+      <button id="ctgsm" onClick="handleCategoryInput()"> submit</button>
+      <button id="ctgcc"> cancel</button></p>
+    </div>
+    <div id="category-list"></div>
+    <!----<p><input id="rereset" type="button" onclick="reset()" value="Reset Content"></form></p>-->
+    <div class="toolbar">
+      <p><input type="text" id="title2" placeholder="Enter a title for the description..."></input>
+      <button id="descriptionsm" onclick="handleDescriptionInput()"> submit</button>
+      <button id="descriptioncc"> cancel</button></p>
+    </div>
+    <div id="description-list"></div>
+    <!----<p><input id="prereset" type="button" onclick="preset()" value="Reset Content"></form></p>-->
+    <p><output type="text">
+    <!----<p><h1>terms of policy and privacy:
+    <button id="button5" onclick="document.getElementById('show').style.display='block'">Show</button>
+    <button id="button6" onclick="document.getElementById('show').style.display='none'">Hide</button></h1></p>
+    <p><form id="show" style="display:none">We have none... (Except for not changing the colors on the colorwheel to fast, because of epilepsy hazard!)</p>
+    <p>Select "Hide", to close them again.</form></p>
+    <p id="rp">I'll defeat you!</p>
+    <button id="bttnnyw" onClick="buttonClickMalfunkx()">No, you won't...</button>
+    <button id="bttnogu" onClick="buttonClickMalfunky()">Ok, I give up...</button></p>
+    <p><button id="Zeit" onclick="document.getElementById('Zeit').innerHTML = Date()">Click on me to display Date and Time.</button></p>
+    <p id="Zeit"></p>
+    <p><button onclick="MyFavMovie()" id="mfM">Animation</button></p> 
+    <div id ="container">
+    <div id ="animate"></div>
+    </div>
+    
+    <p><input type="button" onClick="anup()" id="anup" value="^"></input></p>
+    <p><input type="button" id="anleft" value="<"></input>
+      <input type="button" onClick="andown()" id="andown" value="v"></input>
+      <input type="button" onClick="anright()" id="anright" value=">"></input></p>-->
+      
+    <div class="toolbar">
+      <p><input type="color" id="colorpickerbg"></input></p>
+      <p><input type="color" id="colorpickertxt"></input></p>
+      <p><input type="color" id="colorpickerbtn"></input></p>
+      <p><button onClick="exportt()" id="exportt">Export site</button></p>
+    </div>
+
+    </div>
+  </div>
+
+  <script>
+    one=null, two=null, posY=0, posX=0, currentImage = 0, imageCount = 0
+
+    function previousImage(){
+      currentImage--
+      if (currentImage < 0){
+        currentImage = imageCount - 1
+      }
+      console.log(currentImage)
+      showCurrentImage()
+    }
+
+    function nextImage(){
+      currentImage++
+      if (currentImage > imageCount - 1){
+        currentImage = 0
+      }
+      console.log(currentImage)
+      showCurrentImage()
+    }     
+
+    function showCurrentImage(){
+      document.querySelectorAll(".slideshow-image").forEach(function(imageBox){
+        imageBox.style.display = "none" 
+      })
+      document.querySelector("#image-" + currentImage).style.display = "block"
+    }
+
+    function exportt(){
+      document.querySelectorAll(".toolbar").forEach(function(toolbar){
+        toolbar.style.display = "none" 
+      })
+    }
+
+    function buttonClick(){
+    x=document.getElementById("x-variable").value;
+    alert(x)
+    }
+    function reset(){
+    document.getElementById("reset").reset();
+    } 
+    function buttonClickMalfunkx(){ 
+       if(one!==null){
+      two="x"  
+      } else {
+        one="x"
+      } 
+      document.getElementById("rp").innerHTML = "Ok... you won...";
+    }
+    function buttonClickMalfunky(){
+      if(one!==null){
+      two="y"  
+      } else {
+        one="y"
+      } 
+      document.getElementById("rp").innerHTML = "I win!!! HAHAHAHAHA";
+    } 
+    function myFunction() {
+    document.getElementById("demo").innerHTML = "Ok... you won...";
+    }
+    function MyFavMovie() {
+      var elem = document.getElementById("animate");
+      var posX = 0;
+      var posY = 0; 
+      var id = setInterval(frame, 10);
+      function frame() {
+      if (posX == 375) {
+      
+    } else {
+      posX = posX + 1;        //posX + 1  =is the same thing as=  posX++\\
+      posY++;
+      elem.style.top = posY + "px";
+      elem.style.backgroundColor = "red"
+      elem.style.left = posX + "px"; 
+    }
+   }
+  }
+
+var categories = []           //adds "Categories" by submitting\\ 
+var currentCategory = null
+  
+    function handleCategoryInput(){       
+      input = document.getElementById("title")
+      if (input.value !== ""){
+        var title = input.value
+        categories.push(title)
+        input.value = null
+        console.log(categories)
+        var descriptionsContainer = document.createElement("div")
+        descriptionsContainer.className = "description-list " + "description-" + title 
+        document.getElementById("description-list").append(descriptionsContainer)
+        categoriesReset()
+        categoriesLoop()
+        }
+      }
+
+    function categoriesLoop(){
+      var n = 0
+      while (n < categories.length){
+        var newTitle=document.createElement("div") 
+        newTitle.append(categories[n])
+        newTitle.className="category-title"
+
+        newTitle.onclick=function(event){
+          currentCategory = event.target.innerHTML
+          showCurrentCategory()
+
+          document.querySelectorAll(".category-title").forEach(function (categoryTitle){
+            categoryTitle.className = "category-title"
+          })
+          event.target.className = "category-title active"
+        }
+
+        document.getElementById("category-list").append(newTitle)
+        n++
+        console.log(categories)
+        
+      }  
+    }
+
+    function categoriesReset(){
+        document.getElementById("category-list").innerHTML= "";    
+        console.log("its happening boys")  
+      }
+
+      var descriptions = []           //adds "Description" by submitting\\ 
+
+
+  function showCurrentCategory(){
+    document.querySelectorAll(".description-list").forEach(function (list){
+            list.style.display = "none" 
+          })
+          document.querySelector(".description-" + currentCategory).style.display = "block"
+  }
+
+  function openDescription(){ 
+    }
+    function handleDescriptionInput(){
+      input = document.getElementById("title2")
+      if (input.value !== ""){
+        if (currentCategory !== null){
+          var content = input.value
+        descriptions.push({ content: input.value, category: currentCategory, value: input.value})
+        input.value = null
+        console.log(descriptions)
+        var descriptionP = document.createElement("p")
+        descriptionP.innerHTML = content
+        document.querySelector(".description-" + currentCategory).append(descriptionP)
+        //descriptionReset()
+        //descriptionLoop()
+        } else {
+          alert("you need to add a category first and then select it, by clicking on an already existing category.")
+        }
+       }
+      }
+
+     
+
+    /*function descriptionLoop(){
+      var n = 0
+      while (n < descriptions.length){
+        var newTitle=document.createElement("div")
+        newTitle.append(descriptions[n]["content"] + " - " + descriptions[n]["category"]) 
+        document.getElementById("description-list").append(newTitle)
+        n++
+        console.log(descriptions)
+        
+      }  
+    }
+
+    function descriptionReset(){
+        document.getElementById("description-list").innerHTML= "";    
+        console.log("its happening boys")  
+      }*/
+
+    
+  var step = 15
+    
+    function anup() {
+      console.log(posY)
+      if (posY == 0){
+      
+    } else{
+      posY= posY - step;
+      drawBox(posX, posY)
+   }
+  }
+
+    function anleft() {
+      console.log(posX)
+      if (posX == 0){
+      
+    } else{
+      posX= posX - step;
+      drawBox(posX, posY)
+   }
+  }
+            
+    function andown() {
+      console.log(posY)
+      if (posY == 375){
+      
+    } else{
+      posY= posY + step;
+      drawBox(posX, posY)
+   }
+  }
+            
+    function anright() {
+      console.log(posX)
+      if (posX == 375){ 
+
+    } else{
+      posX= posX + step;
+      drawBox(posX, posY)
+      
+   }
+  }
+
+
+  function drawBox(x, y){
+      var box = document.getElementById("animate")
+      box.style.left = x + "px"
+      box.style.top = y + "px"
+      box.style.backgroundColor = "red"
+  }
+  
+   document.getElementById("colorpickerbg").addEventListener("input", bodyColorChange)
+  function bodyColorChange(event) {
+    document.body.style["background-color"]=event.target.value
+    }
+
+   document.getElementById("colorpickertxt").addEventListener("input", formColorChange)
+  function formColorChange(event) {
+    document.body.style["font-color"]=event.target.value 
+    }
+
+    document.getElementById("colorpickerbtn").addEventListener("input", buttonColorChange)
+  function buttonColorChange(event) {
+    buttonLoop(event.target.value)
+    }
+
+//this function prints/says all the elements in a list.\\
+    function printLoop(){
+      var x=["a", "b", "c", "d", "e"]
+      var n = 0
+      while (n < x.length){
+        console.log(x[n])
+        n++
+      } 
+      console.log("I have printed all the elements") 
+    }
+   
+   //this function will gain excess of all buttons automatically and change their backgroundcolor\\
+    function buttonLoop(color){
+      buttons = document.querySelectorAll("button");
+      var n = 0 
+      buttons[n].style["background-color"] = color
+        n++
+      while (n < buttons.length)
+      n++ 
+    document.getElementById("column1").style["background-color"]=event.target.value
+    document.getElementById("column2").style["background-color"]=event.target.value
+    document.getElementById("img-button").style["background-color"]=event.target.value
+    document.getElementById("column3").style["background-color"]=event.target.value
+    document.getElementById("arr-col2").style["background-color"]=event.target.value  
+    //document.getElementById("v").style["background-color"]=event.target.value
+    document.getElementById("AddCtg").style["background-color"]=event.target.value
+    document.getElementById("ctgsm").style["background-color"]=event.target.value
+    document.getElementById("ctgcc").style["background-color"]=event.target.value
+    document.getElementById("descriptionsm").style["background-color"]=event.target.value
+    document.getElementById("descriptioncc").style["background-color"]=event.target.value
+    /*document.getElementById("rereset").style["background-color"]=event.target.value 
+    document.getElementById("prereset").style["background-color"]=event.target.value
+    document.getElementById("button5").style["background-color"]=event.target.value
+    document.getElementById("button6").style["background-color"]=event.target.value 
+    document.getElementById("bttnnyw").style["background-color"]=event.target.value
+    document.getElementById("bttnogu").style["background-color"]=event.target.value
+    document.getElementById("Zeit").style["background-color"]=event.target.value
+    document.getElementById("mfM").style["background-color"]=event.target.value
+    document.getElementById("anup").style["background-color"]=event.target.value
+    document.getElementById("anleft").style["background-color"]=event.target.value
+    document.getElementById("andown").style["background-color"]=event.target.value
+    document.getElementById("anright").style["background-color"]=event.target.value*/
+    document.getElementById("colorpickerbg").style["background-color"]=event.target.value
+    document.getElementById("colorpickertxt").style["background-color"]=event.target.value
+    document.getElementById("colorpickerbtn").style["background-color"]=event.target.value
+    console.log("Smth bad happened")
+    }
+
+  //this function handles loading images
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+              newImage = document.createElement("img")
+              newImage.src = e.target.result
+              newImage.id = "image-" + imageCount
+              newImage.className = "slideshow-image"
+              document.getElementById("image-list").append(newImage)
+              currentImage = imageCount
+              showCurrentImage()
+              imageCount++
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    
+    /*document.getElementById("anleft").addEventListener("click", anleft) //test for an alternative soloution\\
+    printLoop()*/
+    document.getElementById("img-button").addEventListener("click", function (){
+      document.getElementById("picture-input").click()
+    })
+    document.getElementById("arr-col1").addEventListener("click", previousImage)
+    document.getElementById("arr-col2").addEventListener("click", nextImage)
+    document.getElementById("picture-input").addEventListener("change", function (e){
+        readURL(e.target);
+      });
+      
+  </script>
+ 
+ </body>
+</html>
