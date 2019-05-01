@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html>
-<p><link rel="stylesheet" type="text/css" href="RealestDealestrevialist.css"></p>
+<p><link rel="stylesheet" type="text/css" href="Pom3granad3.css"></p>
  <body>
-    <div class="divimage"><button id="arr-col1"><div id="column1"><</div></button>
-    <div class="column2" id="image-list"></div>
+    <div class="divimage txtc"><button id="arr-col1"><div id="column1"><</div></button>
+    <div class="column2 txtc" id="image-list"></div>
     <button id="arr-col2"><div id="column3">></div></button></div>    
-    <div class="toolbar">
-        <button id="img-button">upload an image</button>
+    <div class="toolbar txtc">
+
+        <button class="txtc" id="img-button">upload an image</button>
         <input
         type="file"
         id="picture-input"
@@ -14,26 +15,27 @@
         style="display: none;"
         accept="image/png, image/jpeg"
         />
+
     </div>
-    <div ></div>
-    <div id="divbgborder"><div id="divbg"><!----<p><p><button id="v"> v </button>-->
-    <div class="toolbar">
-      <button id="AddCtg"> + Add Category</button></p>
-      <p><input type="text" id="title" placeholder="Enter a title for the category..."></input>
-      <button id="ctgsm" onClick="handleCategoryInput()"> submit</button>
-      <button id="ctgcc"> cancel</button></p>
+    <div id="divbgborder"><div id="divbg">
+    <!--<button id="v"> v </button>-->
+    <div class="toolbar txtc">
+      <button class="txtc" id="AddCtg"> + Add Category</button></p>
+      <p><input type="text" class="txtc" id="title" placeholder="Enter a title for the category..."></input>
+      <button class="txtc" id="ctgsm" onClick="handleCategoryInput()"> submit</button>
+      <button class="txtc" id="ctgcc"> cancel</button></p>
     </div>
     <div id="category-list"></div>
-    <!----<p><input id="rereset" type="button" onclick="reset()" value="Reset Content"></form></p>-->
-    <div class="toolbar">
-      <p><input type="text" id="title2" placeholder="Enter a title for the description..."></input>
-      <button id="descriptionsm" onclick="handleDescriptionInput()"> submit</button>
-      <button id="descriptioncc"> cancel</button></p>
+    <input id="rereset" type="button" onclick="reset()" value="Reset Content"></form></p>
+    <div class="toolbar txtc">
+      <p><input class="txtc" type="text" id="title2" placeholder="Enter a title for the description..."></input>
+      <button class="txtc" id="descriptionsm" onclick="handleDescriptionInput()"> submit</button>
+      <button class="txtc" id="descriptioncc"> cancel</button></p>
     </div>
-    <div id="description-list"></div>
-    <!----<p><input id="prereset" type="button" onclick="preset()" value="Reset Content"></form></p>-->
-    <p><output type="text">
-    <!----<p><h1>terms of policy and privacy:
+    <div class="txtc" id="description-list"></div>
+    <input id="prereset" type="button" onclick="preset()" value="Reset Content"></form></p>
+    <p><output type="text" class="txtc">
+    <h1>terms of policy and privacy:
     <button id="button5" onclick="document.getElementById('show').style.display='block'">Show</button>
     <button id="button6" onclick="document.getElementById('show').style.display='none'">Hide</button></h1></p>
     <p><form id="show" style="display:none">We have none... (Except for not changing the colors on the colorwheel to fast, because of epilepsy hazard!)</p>
@@ -49,15 +51,16 @@
     </div>
     
     <p><input type="button" onClick="anup()" id="anup" value="^"></input></p>
-    <p><input type="button" id="anleft" value="<"></input>
+    <p><input type="button" onClick="anleft()" id="anleft" value="<"></input>
       <input type="button" onClick="andown()" id="andown" value="v"></input>
-      <input type="button" onClick="anright()" id="anright" value=">"></input></p>-->
+      <input type="button" onClick="anright()" id="anright" value=">"></input></p>
       
-    <div class="toolbar">
-      <p><input type="color" id="colorpickerbg"></input></p>
-      <p><input type="color" id="colorpickertxt"></input></p>
-      <p><input type="color" id="colorpickerbtn"></input></p>
-      <p><button onClick="exportt()" id="exportt">Export site</button></p>
+    <div class="toolbar  txtc">
+      <p><input type="color" class="txtc" id="colorpickerbg"></input></p>
+      <p><input type="color" class="txtc" id="colorpickerdiv"></input></p>
+      <!----<p><input type="color" class="txtc" id="colorpickertxt"></input></p>-->
+      <p><input type="color" class="txtc" id="colorpickerbtn"></input></p>
+     <!----<p><button class="txtc" onClick="exportt()" id="exportt">Export site</button></p>-->
     </div>
 
     </div>
@@ -95,6 +98,7 @@
       document.querySelectorAll(".toolbar").forEach(function(toolbar){
         toolbar.style.display = "none" 
       })
+      allert("You can now save the site, by pressing ctrl + S, or by pressing ctrl + shift + S")
     }
 
     function buttonClick(){
@@ -189,7 +193,6 @@ var currentCategory = null
       }
 
       var descriptions = []           //adds "Description" by submitting\\ 
-
 
   function showCurrentCategory(){
     document.querySelectorAll(".description-list").forEach(function (list){
@@ -289,21 +292,31 @@ var currentCategory = null
       box.style.top = y + "px"
       box.style.backgroundColor = "red"
   }
-  
+
+
    document.getElementById("colorpickerbg").addEventListener("input", bodyColorChange)
   function bodyColorChange(event) {
     document.body.style["background-color"]=event.target.value
     }
 
-   document.getElementById("colorpickertxt").addEventListener("input", formColorChange)
-  function formColorChange(event) {
-    document.body.style["font-color"]=event.target.value 
-    }
 
-    document.getElementById("colorpickerbtn").addEventListener("input", buttonColorChange)
+  document.getElementById("colorpickerbtn").addEventListener("input", buttonColorChange)
   function buttonColorChange(event) {
     buttonLoop(event.target.value)
+    } 
+
+
+  document.getElementById("colorpickerdiv").addEventListener("input", divColorChange)
+  function divColorChange(event) {
+    document.getElementById("divbgborder").style["background-color"]=event.target.value
+    document.getElementById("divbg").style["background-color"]=event.target.value
     }
+    
+  /*document.getElementById("colorpickertxt").addEventListener("input", txtColorChange)
+  function txtColorChange(event) {
+    document.querySelectorAll(".txtc").style["color"]=event.target.value
+    }*/
+
 
 //this function prints/says all the elements in a list.\\
     function printLoop(){
@@ -317,17 +330,17 @@ var currentCategory = null
     }
    
    //this function will gain excess of all buttons automatically and change their backgroundcolor\\
+
     function buttonLoop(color){
       buttons = document.querySelectorAll("button");
       var n = 0 
       buttons[n].style["background-color"] = color
-        n++
       while (n < buttons.length)
       n++ 
     document.getElementById("column1").style["background-color"]=event.target.value
-    document.getElementById("column2").style["background-color"]=event.target.value
     document.getElementById("img-button").style["background-color"]=event.target.value
     document.getElementById("column3").style["background-color"]=event.target.value
+    document.getElementById("arr-col1").style["background-color"]=event.target.value
     document.getElementById("arr-col2").style["background-color"]=event.target.value  
     //document.getElementById("v").style["background-color"]=event.target.value
     document.getElementById("AddCtg").style["background-color"]=event.target.value
@@ -335,7 +348,7 @@ var currentCategory = null
     document.getElementById("ctgcc").style["background-color"]=event.target.value
     document.getElementById("descriptionsm").style["background-color"]=event.target.value
     document.getElementById("descriptioncc").style["background-color"]=event.target.value
-    /*document.getElementById("rereset").style["background-color"]=event.target.value 
+    document.getElementById("rereset").style["background-color"]=event.target.value 
     document.getElementById("prereset").style["background-color"]=event.target.value
     document.getElementById("button5").style["background-color"]=event.target.value
     document.getElementById("button6").style["background-color"]=event.target.value 
@@ -346,12 +359,23 @@ var currentCategory = null
     document.getElementById("anup").style["background-color"]=event.target.value
     document.getElementById("anleft").style["background-color"]=event.target.value
     document.getElementById("andown").style["background-color"]=event.target.value
-    document.getElementById("anright").style["background-color"]=event.target.value*/
+    document.getElementById("anright").style["background-color"]=event.target.value
     document.getElementById("colorpickerbg").style["background-color"]=event.target.value
-    document.getElementById("colorpickertxt").style["background-color"]=event.target.value
+    document.getElementById("colorpickerdiv").style["background-color"]=event.target.value
     document.getElementById("colorpickerbtn").style["background-color"]=event.target.value
+    //document.getElementById("exportt").style["background-color"]=event.target.value
     console.log("Smth bad happened")
     }
+
+
+  /*function divLoop(color){
+      divs = document.querySelectorAll("div");
+      var n = 0
+      divs[n].style["background-color"] = color
+      while (n < divs.length)
+      n++
+      console.log(divs)
+    }*/
 
   //this function handles loading images
     function readURL(input) {
